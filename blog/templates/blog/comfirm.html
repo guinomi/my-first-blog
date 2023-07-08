@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang = "ja">
+<head>
+    <meta charset="UTF-8">
+    <title>確認画面</title>
+    <!-- 独自cssファイルの読み込み-->
+</head>
+<body>
+    <form action="{% url 'regist' %}" method="post">
+        {% csrf_token %}
+        <table>
+            <!-- 氏名 -->
+            <tr>
+                <td align= "left" valign="top">{{input_form.name.label_tag}}</td>
+                <td>{{input_form.name.value}}</td>
+            </tr>
+            <!-- メモ -->
+            <tr>
+                <td align="left" valign="top">{{input_form.memo.label_tag}}</td>
+                <td>{{input_form.memo.value | linebreaksbr}}</td>
+            </tr>
+            <!-- 入力確認 -->
+            <tr>
+                <td align="left" valign="top">{{input.form.check.label_tag}}</td>
+                <td>{{lbl_checked}}</td>
+            </tr>
+        </table>
+        <br/><br/>
+        <!-- フォームの各値を次画面に渡すためhidden項目を設定 -->
+        {% for field in input_form %}
+           {{field.as_hidden}}
+        {% endfor %}
+        <input type="submit" name="send" value="送信" />
+        <input type="submit" name="back" value="戻る" />
+    </form>
+</body>
+</html>

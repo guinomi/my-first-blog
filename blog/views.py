@@ -5,6 +5,14 @@ from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
 from django.shortcuts import redirect
 
+from django.http import HttpResponse
+from .forms import InputForm
+
+
+
+from django.conf import settings 
+import datetime  
+from django.core.mail import send_mail
 
 
 def post_list(request):
@@ -42,3 +50,41 @@ def post_edit(request, pk):
     else:
         form = PostForm(request.POST,instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+
+
+
+
+
+
+
+def index(request):
+    params = {
+        'input_form' : InputForm()
+    }
+    return render(request, 'blog/input.html', params)
+
+def confirm(request):
+    input_form = InputForm(request.POST)
+
+    if input_form.is_valid():
+        params = {'input_form':input_form,'lbl_checked':'確認済'
+        }
+        return render(request,'blog/confirm.html',params)
+    else:
+        params={
+            'input_form' : input_form
+        }
+        return render(request, 'blog/input.html', params)
+    
+def regist(request):
+    if "send" in request.POST:
+        return render(request,'blog/complete.html')
+    elif "back" in request.POST:
+        input_form = InputForm(request.POST)
+        params = {
+            'input_form':input_form
+        }
+        return render(request, 'blog/input.html',params)
+
+
+
