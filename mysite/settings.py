@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,6 +27,7 @@ SECRET_KEY = 'django-insecure-v90bj0fe-^^c0w^(kk3=-q#vz@d)r%5je*gzujq5@ud4#6p^b9
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+
 
 
 # Application definition
@@ -126,3 +128,18 @@ STATIC_ROOT = BASE_DIR / 'static'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#STATIC_URL = '/static/'
+
+
+#メール送信
+#ためしに出力する方
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
+#実際に送る方
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'g20904em@gm.tsuda.ac.jp'
+EMAIL_HOST_PASSWORD = 'bkrlozpyxkttxalu'
+EMAIL_PORT = '465'
+EMAIL_USE_SSL = True
