@@ -32,7 +32,6 @@ def post_detail(request, pk):
     
 
     #pkはブログの回数で一回だけ通知が来るようにしたい
-    
     if boo[pk]==False:
 
         #スマホに通知がいくようにする
@@ -42,6 +41,7 @@ def post_detail(request, pk):
         data = json.dumps({"test": "hoge"})
 
         #POSTリクエストを送信
+        #住民のiftttのkeyを入力する
         response = requests.post("https://maker.ifttt.com/trigger/hello/with/key/bmJJC2vwlzldgPEhoZmrk3", headers=headers, cookies=cookies, data=data)
 
         '''
